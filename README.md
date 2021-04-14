@@ -14,7 +14,8 @@ This is Part 3 of a 3 Part project.
 * Part 1 can be found at [java-orders](https://github.com/LambdaSchool/java-orders.git)
 * Part 2 can be found at [java-getorders](https://github.com/LambdaSchool/java-getorders.git)
 
-This is a basic database scheme with customers, orders, and sales agents. This Java Spring REST API application will provide endpoints for clients to manipulate various data sets contained in the application's data.
+This is a basic database scheme with customers, orders, and sales agents. This Java Spring REST API application will
+provide endpoints for clients to manipulate various data sets contained in the application's data.
 
 ### Database layout
 
@@ -23,67 +24,73 @@ The table layouts are as follows
 ![Image of Database Layout](java-orders-db.png)
 
 * AGENTS
-  * AGENTCODE primary key, not null Long
-  * AGENTNAME string
-  * WORKINGAREA string
-  * COMMISSION double
-  * PHONE string
-  * COUNTRY string
+    * AGENTCODE primary key, not null Long
+    * AGENTNAME string
+    * WORKINGAREA string
+    * COMMISSION double
+    * PHONE string
+    * COUNTRY string
 
 * CUSTOMERS
-  * CUSTCODE primary key, not null Long
-  * CUSTNAME String, not null
-  * CUSTCITY String
-  * WORKINGAREA String
-  * CUSTCOUNTRY String
-  * GRADE String
-  * OPENINGAMT double
-  * RECEIVEAMT double
-  * PAYMENTAMT double
-  * OUTSTANDINGAMT double
-  * PHONE String
-  * AGENTCODE Long foreign key (one agent to many customers) not null
+    * CUSTCODE primary key, not null Long
+    * CUSTNAME String, not null
+    * CUSTCITY String
+    * WORKINGAREA String
+    * CUSTCOUNTRY String
+    * GRADE String
+    * OPENINGAMT double
+    * RECEIVEAMT double
+    * PAYMENTAMT double
+    * OUTSTANDINGAMT double
+    * PHONE String
+    * AGENTCODE Long foreign key (one agent to many customers) not null
 
 * ORDERS
-  * ORDNUM primary key, not null Long
-  * ORDAMOUNT double
-  * ADVANCEAMOUNT double
-  * CUSTCODE Long foreign key (one customer to many orders) not null
-  * ORDERDESCRIPTION String
+    * ORDNUM primary key, not null Long
+    * ORDAMOUNT double
+    * ADVANCEAMOUNT double
+    * CUSTCODE Long foreign key (one customer to many orders) not null
+    * ORDERDESCRIPTION String
 
 * PAYMENTS
-  * PAYMENTID primary key, not null long
-  * TYPE String not null
-  
+    * PAYMENTID primary key, not null long
+    * TYPE String not null
+
 * ORDERSPAYMENTS (join table)
-  * ORDERNUM foreign key to ORDERS
-  * PAYMENTID foreign key to PAYMENTS.
+    * ORDERNUM foreign key to ORDERS
+    * PAYMENTID foreign key to PAYMENTS.
 
 * Customers has a foreign key to Agents (AGENTCODE) this means:
-  * Customers has a Many to One relationship to Agents and
-  * Agents has a One to Many relationship to Customers
+    * Customers has a Many to One relationship to Agents and
+    * Agents has a One to Many relationship to Customers
 
 * Orders has a foreign key to Customers (CUSTCODE)
-  * Orders has a Many to One relationship to Customers and
-  * Customers has a One to Many relationship to Orders
+    * Orders has a Many to One relationship to Customers and
+    * Customers has a One to Many relationship to Orders
 
 * Orders has a many to many relationship with payments
-  * multiple orders can use the same payment type and an order can have multiple payment types.
-  * For example you can use both gift card and credit card to pay for an order.
+    * multiple orders can use the same payment type and an order can have multiple payment types.
+    * For example you can use both gift card and credit card to pay for an order.
 
-Using the provided seed data, a successful application will return the follow data based on the given endpoint. Expand the section of the endpoint to see the data that is returned. The first set of endpoints that read data were developed for the first part of the project. Your task is to add the second set of endpoints which manipulate the data.
+Using the provided seed data, a successful application will return the follow data based on the given endpoint. Expand
+the section of the endpoint to see the data that is returned. The first set of endpoints that read data were developed
+for the first part of the project. Your task is to add the second set of endpoints which manipulate the data.
 
 ### MVP - MANIPULATING DATA new endpoints to add
 
 ## Instructions
 
-* [ ] Please fork and clone this repository. Copy your solution from part 2 into this repository. Your solution from part 2 is the starting point for part 3. If your part 2 did not reach MVP, please check with your TL group leader about your options. Regularly commit and push your code as appropriate.
+* [ ] Please fork and clone this repository. Copy your solution from part 2 into this repository. Your solution from
+  part 2 is the starting point for part 3. If your part 2 did not reach MVP, please check with your TL group leader
+  about your options. Regularly commit and push your code as appropriate.
 
 Expose the following endpoints
 
 * [ ]  POST /customers/customer - Adds a new customer including any new orders
-* [ ]  PUT /customers/customer/{custcode} - completely replaces the customer record including associated orders with the provided data
-* [ ]  PATCH /customers/customer/{custcode} - updates customers with the new data. Only the new data is to be sent from the frontend client.
+* [ ]  PUT /customers/customer/{custcode} - completely replaces the customer record including associated orders with the
+  provided data
+* [ ]  PATCH /customers/customer/{custcode} - updates customers with the new data. Only the new data is to be sent from
+  the frontend client.
 * [ ]  DELETE /customers/customer/{custcode} - Deletes the given customer including any associated orders
 
 * [ ]  POST /orders/order - adds a new order to an existing customer
@@ -92,7 +99,8 @@ Expose the following endpoints
 
 ### Stretch Goal
 
-* [ ] Rename your project and associated packages and files from orders, or what you called your orders, to crudyorders, or what you would like to call your crudyorders project.
+* [ ] Rename your project and associated packages and files from orders, or what you called your orders, to crudyorders,
+  or what you would like to call your crudyorders project.
 * [ ] DELETE /agents/unassigned/{agentcode} - Deletes an agent if they are not assigned to a customer
 
 ### MVP Testing
