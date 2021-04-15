@@ -11,4 +11,6 @@ public interface CustomerServices {
     Customer findCustomerById(long custcode);
     List<Customer> findByCustnameLike(String subname);
     List<OrderCount> getOrderCounts();
+    void delete(long id);
+    Customer update(Customer customer, long id);
 }

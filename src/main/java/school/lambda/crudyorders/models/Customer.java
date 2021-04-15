@@ -8,6 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "customers")
+@JsonIgnoreProperties(value = {"hasvalueforopeningamt", "hasvalueforreceiveamt", "hasvalueforpaymentamt", "hasvalueforoutstandingamt"})
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,6 +24,15 @@ public class Customer {
     private double paymentamt;
     private double outstandingamt;
     private String phone;
+
+    @Transient
+    public boolean hasvalueforopeningamt = false;
+    @Transient
+    public boolean hasvalueforreceiveamt = false;
+    @Transient
+    public boolean hasvalueforpaymentamt = false;
+    @Transient
+    public boolean hasvalueforoutstandingamt = false;
 
     //  Agentcode  =  foreign key
     //  Many to One rel with Agents
@@ -107,6 +117,7 @@ public class Customer {
     }
 
     public void setOpeningamt(double openingamt) {
+        hasvalueforopeningamt = true;
         this.openingamt = openingamt;
     }
 
@@ -115,7 +126,8 @@ public class Customer {
     }
 
     public void setReceiveamt(double receiveamt) {
-        this.receiveamt = receiveamt;
+    hasvalueforreceiveamt = true;
+    this.receiveamt = receiveamt;
     }
 
     public double getPaymentamt() {
@@ -123,6 +135,7 @@ public class Customer {
     }
 
     public void setPaymentamt(double paymentamt) {
+        hasvalueforpaymentamt = true;
         this.paymentamt = paymentamt;
     }
 
@@ -131,6 +144,7 @@ public class Customer {
     }
 
     public void setOutstandingamt(double outstandingamt) {
+        hasvalueforoutstandingamt = true;
         this.outstandingamt = outstandingamt;
     }
 
